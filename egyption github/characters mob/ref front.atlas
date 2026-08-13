@@ -1,7 +1,6 @@
 ref front.webp
 size:304,580
 filter:Linear,Linear
-pma:true
 scale:0.4
 refs/mob ref 3
 bounds:2,2,300,573

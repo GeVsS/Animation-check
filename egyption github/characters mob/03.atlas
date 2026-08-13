@@ -1,7 +1,6 @@
 03.webp
 size:2040,1880
 filter:Linear,Linear
-pma:true
 scale:0.4
 3rd wing/3rd wing_0
 bounds:580,678,189,576
@@ -304,7 +303,6 @@ rotate:90
 03_2.webp
 size:2044,1928
 filter:Linear,Linear
-pma:true
 scale:0.4
 3rd wing/3rd wing_15
 bounds:538,657,550,435
@@ -356,7 +354,6 @@ offsets:28,26,749,619
 03_3.webp
 size:1876,2044
 filter:Linear,Linear
-pma:true
 scale:0.4
 3rd wing/3rd wing_10
 bounds:859,651,305,560
@@ -417,7 +414,6 @@ offsets:28,20,749,619
 03_4.webp
 size:1220,344
 filter:Linear,Linear
-pma:true
 scale:0.4
 3rd wing/3rd wing_11
 bounds:670,8,334,547

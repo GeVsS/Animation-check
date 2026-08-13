@@ -1,10 +1,10 @@
 backshine.webp
-size:176,136
+size:152,120
 filter:Linear,Linear
 pma:true
-scale:0.4
+scale:0.35
 BE_particle
-bounds:139,102,32,32
+bounds:122,89,28,28
 shineH2
-bounds:2,2,135,132
-offsets:20,39,180,210
+bounds:2,2,118,115
+offsets:18,35,158,184

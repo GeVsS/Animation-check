@@ -1,8 +1,8 @@
-ref front.webp
-size:304,580
+ref front_2.webp
+size:268,508
 filter:Linear,Linear
 pma:true
-scale:0.4
+scale:0.35
 refs/mob ref 3
-bounds:2,2,300,573
-offsets:32,138,364,714
+bounds:2,2,263,502
+offsets:28,120,319,624

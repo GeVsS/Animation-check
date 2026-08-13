@@ -1,6 +1,7 @@
 backshine.webp
 size:176,136
 filter:Linear,Linear
+pma:true
 scale:0.4
 BE_particle
 bounds:139,102,32,32

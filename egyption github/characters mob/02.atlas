@@ -1,6 +1,7 @@
 02.webp
 size:1988,524
 filter:Linear,Linear
+pma:true
 scale:0.4
 blank
 bounds:7,5,1,1

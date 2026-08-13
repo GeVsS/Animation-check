@@ -1,6 +1,7 @@
 transitionCh.webp
 size:1932,920
 filter:Linear,Linear
+pma:true
 scale:0.4
 transition2/transition_0
 bounds:535,744,174,266

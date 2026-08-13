@@ -1,0 +1,210 @@
+01.webp
+size:2036,348
+filter:Linear,Linear
+pma:true
+scale:0.4
+blank
+bounds:19,5,1,1
+char1/char1_Hip
+bounds:1411,78,95,73
+rotate:90
+char1/char1_L earing
+bounds:296,8,19,26
+char1/char1_L eye
+bounds:335,2,6,14
+rotate:90
+char1/char1_L hand
+bounds:360,3,56,224
+rotate:90
+char1/char1_L pesh
+bounds:679,72,166,274
+char1/char1_L_eyebraw
+bounds:335,10,24,23
+rotate:90
+char1/char1_R earing
+bounds:71,3,31,45
+rotate:90
+char1/char1_R earingG
+bounds:118,3,31,45
+rotate:90
+char1/char1_R pesh
+bounds:340,61,97,285
+char1/char1_R_eyebraw
+bounds:1125,142,46,20
+char1/char1_chest
+bounds:1407,220,126,122
+rotate:90
+char1/char1_chestG
+bounds:1531,220,126,122
+rotate:90
+char1/char1_finger 3
+bounds:317,8,16,26
+char1/char1_head
+bounds:1655,224,107,122
+char1/char1_head back
+bounds:847,140,206,137
+rotate:90
+char1/char1_head backG
+bounds:986,140,206,137
+rotate:90
+char1/char1_headG
+bounds:1764,224,107,122
+char1/char1_hipshor
+bounds:1676,111,84,88
+char1/char1_hipshorkax
+bounds:1350,172,55,174
+char1/char1_l eyeball
+bounds:1173,142,20,20
+char1/char1_l eyeballG
+bounds:165,3,30,31
+char1/char1_mouth
+bounds:1479,175,43,18
+rotate:90
+char1/char1_mouthG
+bounds:1499,175,43,18
+rotate:90
+char1/char1_pesh back
+bounds:439,70,238,276
+char1/char1_r eye
+bounds:2,3,3,15
+rotate:90
+char1/char1_r eyeball
+bounds:1407,175,43,34
+rotate:90
+char1/char1_r eyeballG
+bounds:1443,175,43,34
+rotate:90
+char1/char1_r finger 2
+bounds:340,38,13,21
+char1/char1_r hand
+bounds:1487,2,81,77
+offsets:1,0,82,77
+char1/char1_r uparm
+bounds:197,6,28,97
+rotate:90
+char1/char1_shadow
+bounds:2,8,338,67
+offsets:14,4,369,73
+rotate:90
+char1/char1_tail
+bounds:1125,164,119,182
+char1/char1_tail ok
+bounds:1519,201,17,357
+rotate:90
+char1/char1_torso
+bounds:1552,81,118,122
+rotate:90
+char1/char1_yubka
+bounds:71,36,267,310
+fire/fire_0
+bounds:1819,28,65,84
+offsets:20,8,100,100
+fire/fire_1
+bounds:1952,57,65,83
+offsets:20,9,100,100
+fire/fire_10
+bounds:1752,23,65,86
+offsets:17,8,100,100
+fire/fire_11
+bounds:1029,72,66,86
+offsets:16,8,100,100
+rotate:90
+fire/fire_12
+bounds:1117,72,66,86
+offsets:16,8,100,100
+rotate:90
+fire/fire_13
+bounds:1214,3,67,87
+offsets:16,8,100,100
+rotate:90
+fire/fire_14
+bounds:940,72,66,87
+offsets:16,8,100,100
+rotate:90
+fire/fire_15
+bounds:864,2,68,88
+offsets:15,8,100,100
+rotate:90
+fire/fire_16
+bounds:954,2,68,88
+offsets:15,8,100,100
+rotate:90
+fire/fire_17
+bounds:773,2,68,89
+offsets:15,8,100,100
+rotate:90
+fire/fire_18
+bounds:1661,10,69,89
+offsets:14,8,100,100
+rotate:90
+fire/fire_19
+bounds:1570,9,70,89
+offsets:14,8,100,100
+rotate:90
+fire/fire_2
+bounds:1952,142,66,81
+offsets:19,9,100,100
+rotate:90
+fire/fire_20
+bounds:1205,72,70,90
+offsets:14,8,100,100
+fire/fire_21
+bounds:1303,2,70,90
+offsets:14,8,100,100
+rotate:90
+fire/fire_22
+bounds:1395,2,70,90
+offsets:14,8,100,100
+rotate:90
+fire/fire_23
+bounds:680,2,68,91
+offsets:16,8,100,100
+rotate:90
+fire/fire_24
+bounds:847,72,66,91
+offsets:19,8,100,100
+rotate:90
+fire/fire_25
+bounds:586,2,66,92
+offsets:19,8,100,100
+rotate:90
+fire/fire_26
+bounds:1277,74,65,92
+offsets:20,8,100,100
+fire/fire_27
+bounds:1344,74,65,92
+offsets:20,8,100,100
+fire/fire_28
+bounds:1486,81,64,92
+offsets:21,8,100,100
+fire/fire_29
+bounds:1828,115,65,84
+offsets:20,8,100,100
+fire/fire_3
+bounds:1952,279,67,82
+offsets:19,9,100,100
+rotate:90
+fire/fire_4
+bounds:1952,210,67,82
+offsets:19,9,100,100
+rotate:90
+fire/fire_5
+bounds:1044,2,68,83
+offsets:18,9,100,100
+rotate:90
+fire/fire_6
+bounds:1878,263,67,83
+offsets:18,9,100,100
+fire/fire_7
+bounds:1129,2,68,83
+offsets:17,9,100,100
+rotate:90
+fire/fire_8
+bounds:1886,29,64,84
+offsets:17,9,100,100
+fire/fire_9
+bounds:1762,114,64,85
+offsets:17,8,100,100
+refs/Bastet
+bounds:1246,168,102,178
+offsets:17,12,144,216

@@ -1,7 +1,6 @@
 icons.webp
 size:2048,2040
 filter:Linear,Linear
-pma:true
 scale:0.3
 blank
 bounds:2036,1722,1,1
@@ -215,7 +214,6 @@ offsets:79,37,302,259
 icons_2.webp
 size:2040,2012
 filter:Linear,Linear
-pma:true
 scale:0.3
 FX_Magic_Point2
 bounds:919,1933,73,73
@@ -465,7 +463,6 @@ offsets:83,35,302,259
 icons_3.webp
 size:1840,1872
 filter:Linear,Linear
-pma:true
 scale:0.3
 frame/frame_10
 bounds:1234,1339,296,259
@@ -588,7 +585,6 @@ bounds:623,1340,299,258
 icons_4.webp
 size:2036,1360
 filter:Linear,Linear
-pma:true
 scale:0.3
 frame/frame_18
 bounds:830,30,294,259

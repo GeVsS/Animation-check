@@ -1,6 +1,7 @@
 icons0.3.webp
 size:2048,2024
 filter:Linear,Linear
+pma:true
 scale:0.3
 FX_Magic_Point2
 bounds:1671,1905,71,71
@@ -469,6 +470,7 @@ rotate:90
 icons0.3_2.webp
 size:2046,1844
 filter:Linear,Linear
+pma:true
 scale:0.3
 frame/frame_10
 bounds:1123,1075,294,259
@@ -624,6 +626,7 @@ bounds:279,1084,299,258
 icons0.3_3.webp
 size:2045,2005
 filter:Linear,Linear
+pma:true
 scale:0.3
 ic5_bottomSt
 bounds:2,1239,433,374
@@ -733,6 +736,7 @@ offsets:30,19,449,388
 icons0.3_4.webp
 size:1770,785
 filter:Linear,Linear
+pma:true
 scale:0.3
 ic7_iconG
 bounds:1482,206,286,286

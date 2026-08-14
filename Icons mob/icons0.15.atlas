@@ -1,6 +1,7 @@
 icons0.15.webp
 size:2017,1571
 filter:Linear,Linear
+pma:true
 scale:0.15
 FX_Magic_Point2
 bounds:660,4,35,35

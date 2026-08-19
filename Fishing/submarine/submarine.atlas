@@ -1,0 +1,12 @@
+submarine.webp
+size:1024,512
+filter:Linear,Linear
+scale:0.6
+blank
+bounds:2,2,1,1
+submarine
+bounds:597,187,418,254
+offsets:3,2,424,258
+submarineG
+bounds:2,5,593,436
+offsets:105,25,800,487

@@ -1,0 +1,38 @@
+loader.webp
+size:912,208
+filter:Linear,Linear
+scale:0.25
+Crab_Crab
+bounds:130,8,198,162
+rotate:90
+Crab_Gun 1
+bounds:294,6,76,252
+rotate:90
+Crab_gun2
+bounds:2,3,62,203
+Crab_gun3
+bounds:66,3,62,203
+Pink Bullet 3
+bounds:595,86,120,90
+offsets:32,29,169,135
+rotate:90
+betpart
+bounds:294,84,299,122
+offsets:1,0,300,122
+big1_beard
+bounds:548,12,14,22
+big1_body
+bounds:687,116,220,90
+big1_eye
+bounds:548,2,8,8
+big1_last 1
+bounds:548,36,106,46
+offsets:0,6,106,64
+big1_teler
+bounds:886,24,90,16
+rotate:90
+coin1
+bounds:687,4,109,110
+x5
+bounds:798,4,110,86
+rotate:90

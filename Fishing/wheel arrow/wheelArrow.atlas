@@ -1,0 +1,13 @@
+wheelArrow.webp
+size:404,208
+filter:Linear,Linear
+scale:0.3
+Arrow
+bounds:282,51,105,152
+offsets:62,77,225,305
+ArrowG
+bounds:2,4,199,278
+offsets:15,18,225,305
+rotate:90
+web 8 header
+bounds:282,2,118,47

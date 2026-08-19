@@ -1,0 +1,383 @@
+fishes.webp
+size:2044,2024
+filter:Linear,Linear
+scale:0.6
+Big 2
+bounds:800,1454,556,171
+Medium 1
+bounds:848,467,679,248
+Medium 2
+bounds:760,217,679,248
+Seahorse
+bounds:1062,717,246,500
+rotate:90
+Small 5
+bounds:2,1081,662,195
+offsets:0,0,662,197
+Small 7
+bounds:1196,965,662,195
+offsets:0,0,662,197
+Small 8
+bounds:2,616,246,500
+rotate:90
+Small6_big wing
+bounds:1449,1979,40,41
+rotate:90
+Small6_body
+bounds:453,301,305,268
+Small6_eye
+bounds:5,2005,14,15
+rotate:90
+Small6_eyeback
+bounds:184,1998,28,21
+Small6_small wing
+bounds:244,1996,23,27
+rotate:90
+big1_beard
+bounds:750,1987,32,53
+rotate:90
+big1_body
+bounds:666,1057,528,215
+big1_eye
+bounds:76,2001,19,18
+big1_last 1
+bounds:2,1694,254,109
+offsets:0,15,254,154
+big1_teler
+bounds:1090,1982,215,37
+big3_bex 1
+bounds:2,1541,274,145
+big3_bex 2
+bounds:1876,1610,217,152
+rotate:90
+big3_bex 3
+bounds:805,1986,186,33
+big3_body
+bounds:1305,1162,571,185
+big3_hand
+bounds:70,1938,85,59
+fish shock/fish shock_0
+bounds:1487,1742,132,105
+offsets:236,22,600,600
+fish shock/fish shock_1
+bounds:1363,1592,330,136
+offsets:134,37,600,600
+fish shock/fish shock_11
+bounds:2,2018,1,1
+fish shock/fish shock_16
+bounds:2,2018,1,1
+fish shock/fish shock_18
+bounds:2,2018,1,1
+medshock/medshock_11
+bounds:2,2018,1,1
+medshock/medshock_13
+bounds:2,2018,1,1
+medshock/medshock_15
+bounds:2,2018,1,1
+medshock/medshock_17
+bounds:2,2018,1,1
+medshock/medshock_19
+bounds:2,2018,1,1
+medshock/medshock_21
+bounds:2,2018,1,1
+medshock/medshock_23
+bounds:2,2018,1,1
+medshock/medshock_25
+bounds:2,2018,1,1
+medshock/medshock_28
+bounds:2,2018,1,1
+medshock/medshock_29
+bounds:2,2018,1,1
+medshock/medshock_3
+bounds:2,2018,1,1
+medshock/medshock_30
+bounds:2,2018,1,1
+medshock/medshock_31
+bounds:2,2018,1,1
+medshock/medshock_32
+bounds:2,2018,1,1
+medshock/medshock_33
+bounds:2,2018,1,1
+medshock/medshock_5
+bounds:2,2018,1,1
+medshock/medshock_7
+bounds:2,2018,1,1
+medshock/medshock_9
+bounds:2,2018,1,1
+shockboom/shockboom_11
+bounds:2,2018,1,1
+fish shock/fish shock_2
+bounds:2,1327,360,185
+offsets:131,56,600,600
+fish shock/fish shock_4
+bounds:1030,1627,331,133
+offsets:129,429,600,600
+fish shock/fish shock_6
+bounds:1611,1349,375,182
+offsets:98,342,600,600
+medium 4_big wing
+bounds:1492,1979,40,41
+rotate:90
+medium 4_body
+bounds:1441,182,305,268
+medium 4_eye
+bounds:22,2005,14,15
+rotate:90
+medium 4_eyeback
+bounds:214,1998,28,21
+medium 4_small wing
+bounds:273,1996,23,27
+rotate:90
+medium 5
+bounds:708,1274,595,178
+offsets:3,63,600,302
+medium3_body
+bounds:2,864,528,215
+medium3_chin
+bounds:1307,1980,140,39
+offsets:0,0,140,40
+medium3_eye
+bounds:39,2005,14,14
+medium3_eyeback
+bounds:1944,1903,62,64
+rotate:90
+medium3_low yelid
+bounds:470,1988,64,31
+medium3_up eyelid
+bounds:1917,1978,65,41
+medshock/medshock_0
+bounds:1385,1751,96,100
+offsets:62,97,600,300
+rotate:90
+medshock/medshock_1
+bounds:1695,1533,175,195
+offsets:64,46,600,300
+medshock/medshock_12
+bounds:2,78,420,268
+offsets:80,7,600,300
+medshock/medshock_14
+bounds:1529,452,391,261
+offsets:101,11,600,300
+medshock/medshock_16
+bounds:504,571,342,254
+offsets:126,16,600,300
+medshock/medshock_18
+bounds:1358,1357,233,251
+offsets:227,24,600,300
+rotate:90
+medshock/medshock_2
+bounds:1748,151,299,272
+offsets:67,0,600,300
+rotate:90
+medshock/medshock_20
+bounds:278,1514,172,230
+offsets:297,40,600,300
+rotate:90
+medshock/medshock_22
+bounds:818,1628,132,210
+offsets:339,55,600,300
+rotate:90
+medshock/medshock_24
+bounds:1897,1829,72,144
+offsets:391,100,600,300
+rotate:90
+medshock/medshock_26
+bounds:379,1991,28,28
+offsets:425,167,600,300
+medshock/medshock_27
+bounds:379,1991,28,28
+offsets:425,167,600,300
+shockboom/shockboom_0
+bounds:1564,715,248,265
+offsets:198,140,600,600
+rotate:90
+shockboom/shockboom_1
+bounds:424,2,326,297
+offsets:119,142,600,600
+special1
+bounds:258,1688,558,106
+special2_head
+bounds:510,1505,181,288
+offsets:0,310,181,598
+rotate:90
+special2_leg 1
+bounds:931,1859,64,451
+rotate:90
+special2_leg 2
+bounds:479,1867,63,450
+offsets:0,0,63,451
+rotate:90
+special2_leg 3
+bounds:586,1932,51,420
+rotate:90
+special2_leg 4
+bounds:432,1796,69,426
+rotate:90
+special2_leg 5
+bounds:157,1937,49,427
+rotate:90
+special3_head
+bounds:364,1278,342,225
+special3_wing_1
+bounds:1535,1979,40,380
+rotate:90
+special3_wing_2
+bounds:1008,1925,52,443
+rotate:90
+special3_wing_3
+bounds:2,1874,61,475
+rotate:90
+special3_wing_4
+bounds:860,1762,85,523
+rotate:90
+special3_wing_5
+bounds:1453,1918,58,489
+rotate:90
+special3_wing_6
+bounds:1384,1849,67,418
+rotate:90
+special3_wing_7
+bounds:2,1805,67,428
+rotate:90
+special4_anchor
+bounds:536,1988,127,31
+special4_bex_1
+bounds:1984,1967,55,52
+special4_bex_2
+bounds:1048,1983,40,36
+offsets:0,5,50,41
+special4_bochka 1
+bounds:665,1988,31,83
+rotate:90
+special4_bochka 2
+bounds:302,1996,23,75
+rotate:90
+special4_bochka 3
+bounds:118,1999,20,64
+rotate:90
+special4_bochka 4
+bounds:409,1990,29,59
+rotate:90
+special4_bochka lar
+bounds:2,1956,44,66
+offsets:0,2,44,68
+rotate:90
+special4_body
+bounds:2,348,449,266
+special4_eye
+bounds:55,2002,19,17
+special4_tev 1
+bounds:1804,1840,91,76
+special5_bex
+bounds:993,1985,34,53
+rotate:90
+special5_body
+bounds:532,827,528,228
+offsets:0,20,528,248
+special5_eye
+bounds:97,2000,19,19
+special5_tev
+bounds:1621,1730,253,108
+
+fishes_2.webp
+size:1996,1800
+filter:Linear,Linear
+scale:0.6
+Small 4
+bounds:2,1233,446,284
+fish shock/fish shock_10
+bounds:459,37,410,416
+offsets:105,137,600,600
+rotate:90
+fish shock/fish shock_12
+bounds:877,4,409,478
+offsets:103,103,600,600
+rotate:90
+fish shock/fish shock_13
+bounds:1286,415,385,417
+offsets:87,50,600,600
+rotate:90
+fish shock/fish shock_14
+bounds:1555,1152,353,339
+offsets:135,244,600,600
+fish shock/fish shock_15
+bounds:358,860,387,342
+offsets:91,22,600,600
+fish shock/fish shock_17
+bounds:2,891,354,340
+offsets:117,19,600,600
+fish shock/fish shock_3
+bounds:402,449,376,499
+offsets:122,79,600,600
+rotate:90
+fish shock/fish shock_5
+bounds:2,52,395,455
+offsets:104,93,600,600
+rotate:90
+fish shock/fish shock_7
+bounds:832,1196,372,320
+offsets:121,110,600,600
+fish shock/fish shock_8
+bounds:450,1204,380,312
+offsets:99,199,600,600
+fish shock/fish shock_9
+bounds:903,422,378,381
+offsets:121,119,600,600
+rotate:90
+medshock/medshock_10
+bounds:399,1519,421,278
+offsets:76,3,600,300
+medshock/medshock_4
+bounds:2,1524,395,273
+offsets:70,0,600,300
+medshock/medshock_6
+bounds:822,1518,416,279
+offsets:73,0,600,300
+medshock/medshock_8
+bounds:1240,1517,427,280
+offsets:75,0,600,300
+shockboom/shockboom_2
+bounds:1669,1493,323,304
+offsets:118,136,600,600
+shockboom/shockboom_3
+bounds:1206,1177,338,347
+offsets:122,110,600,600
+rotate:90
+shockboom/shockboom_4
+bounds:2,483,375,398
+offsets:122,87,600,600
+rotate:90
+shockboom/shockboom_5
+bounds:1357,2,411,430
+offsets:97,72,600,600
+rotate:90
+small Fishes_Small 1
+bounds:747,827,526,348
+offsets:35,18,600,368
+small Fishes_Small 3
+bounds:1275,802,526,348
+offsets:35,18,600,368
+
+fishes_3.webp
+size:1332,936
+filter:Linear,Linear
+scale:0.6
+shockboom/shockboom_10
+bounds:453,15,442,444
+offsets:59,69,600,600
+rotate:90
+shockboom/shockboom_6
+bounds:899,3,454,428
+offsets:58,73,600,600
+rotate:90
+shockboom/shockboom_7
+bounds:2,2,464,449
+offsets:51,67,600,600
+rotate:90
+shockboom/shockboom_8
+bounds:477,459,474,460
+offsets:43,62,600,600
+rotate:90
+shockboom/shockboom_9
+bounds:2,468,473,465
+offsets:43,59,600,600

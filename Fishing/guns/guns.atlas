@@ -1,0 +1,77 @@
+guns.webp
+size:780,952
+filter:Linear,Linear
+scale:0.3
+Crab_Crab
+bounds:567,709,238,194
+rotate:90
+Crab_Gun 1
+bounds:681,388,92,302
+Crab_gun2
+bounds:327,374,74,243
+rotate:90
+Crab_gun3
+bounds:703,143,74,243
+Gun
+bounds:2,2,115,361
+rotate:90
+Octopus
+bounds:327,682,238,265
+T_L_hand
+bounds:703,64,77,58
+rotate:90
+T_R_hand
+bounds:572,390,79,58
+T_turtle
+bounds:515,95,186,277
+offsets:3,0,190,278
+Turtle gun
+bounds:327,450,230,352
+offsets:0,0,230,353
+rotate:90
+swipe BT/swipe BT_0
+bounds:567,692,15,44
+rotate:90
+swipe BT/swipe BT_1
+bounds:613,692,15,44
+rotate:90
+swipe BT/swipe BT_10
+bounds:659,692,15,44
+rotate:90
+swipe BT/swipe BT_11
+bounds:705,692,15,44
+rotate:90
+swipe BT/swipe BT_12
+bounds:653,404,15,44
+swipe BT/swipe BT_13
+bounds:763,97,15,44
+swipe BT/swipe BT_14
+bounds:763,51,15,44
+swipe BT/swipe BT_15
+bounds:763,903,15,44
+swipe BT/swipe BT_16
+bounds:763,857,15,44
+swipe BT/swipe BT_17
+bounds:763,811,15,44
+swipe BT/swipe BT_2
+bounds:763,765,15,44
+swipe BT/swipe BT_3
+bounds:763,719,15,44
+swipe BT/swipe BT_4
+bounds:365,73,15,44
+swipe BT/swipe BT_5
+bounds:382,73,15,44
+swipe BT/swipe BT_6
+bounds:399,73,15,44
+swipe BT/swipe BT_7
+bounds:416,73,15,44
+swipe BT/swipe BT_8
+bounds:433,73,15,44
+swipe BT/swipe BT_9
+bounds:450,73,15,44
+trident
+bounds:2,119,240,511
+rotate:90
+tridentG
+bounds:2,361,323,586
+offsets:58,167,439,935

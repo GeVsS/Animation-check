@@ -1,0 +1,467 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><title>Gangseritos</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { width:100%; height:100%; background:#000; overflow:hidden; }
+.stage { position:relative; width:100%; max-width:750px; margin:0 auto; aspect-ratio:750/1440; overflow:hidden; touch-action:manipulation; container-type:inline-size; }
+canvas { width:100%; height:100%; display:block; }
+#onCanvasControls { position:absolute; display:flex; align-items:center; gap:1.8667cqw; z-index:50; transform:translate(-50%,-50%); }
+#onCanvasDiceBtn { width:6.6667cqw; aspect-ratio:1/1; border-radius:50%; font-size:2.6667cqw; display:flex; align-items:center; justify-content:center; background:#444; color:#fff; border:none; box-shadow:0 4px 14px rgba(0,0,0,0.5); padding:0; }
+#onCanvasSpinBtn { width:24.6667cqw; height:24.6667cqw; border-radius:50%; display:flex; align-items:center; justify-content:center; text-align:center; font-size:4.6867cqw; background:#3a7d5c; color:#fff; border:none; font-weight:bold; box-shadow:0 4px 14px rgba(0,0,0,0.5); letter-spacing:0.5px; line-height:1.1; padding:0; }
+.popupTriggerBtn { position:absolute; transform:translate(-50%,-50%); padding:1.3333cqw 2.1333cqw; border-radius:22px; background:#a86a1e; color:#fff; font-size:1.6000cqw; font-weight:bold; border:none; box-shadow:0 4px 14px rgba(0,0,0,0.5); white-space:nowrap; }
+.popupTriggerBtn:hover { background:#c47d24; }
+</style></head><body>
+<div class="stage"><canvas id="canvas"></canvas><div id="onCanvasControls"><button id="onCanvasDiceBtn">🎲</button><button id="onCanvasSpinBtn">▶ SPIN</button></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@esotericsoftware/spine-webgl@4.1.*/dist/iife/spine-webgl.js"></script>
+<script>
+var PROJECT = {"projectName":"Gangseritos","canvasW":"750","canvasH":"1440","gridWidth":"705","gridHeight":"504","gridOffsetX":"24","gridOffsetY":"275","gridCols":"5","gridRows":"5","hGap":"0","vGap":"0","maskExtraW":"0","maskExtraH":"0","globalSymbolScale":"2","spinDuration":"900","colStagger":"100","spinSpeed":"2200","reelDelays":[0,100,200,300,400],"dropDuration":"280","minClusterSize":"5","minLineLen":"3","mode":"classic","controlsPos":{"x":343.9130434782609,"y":1037.1159420289853},"spinBtnSize":185,"sceneStack":[{"type":"popup","id":"popup1","name":"BonusStart","source":"github","ghOwner":"GeVsS","ghRepo":"Animation-check","ghBranch":"main","ghFolder":"Gangsteritos/popups mob","ghJsonName":"bonusStart.json","ghAtlasName":"popup.atlas","localJsonText":null,"localAtlasText":null,"localImageNames":null,"localImageDataUrls":null,"localName":null,"scale":0.4,"posX":374.7826086956522,"posY":500.86956521739125,"locked":false,"triggerAnim":"all","buttonPos":{"x":428.0434782608696,"y":23.739130434782613},"dimEnabled":true,"dimOpacity":0.6},{"type":"popup","id":"popup2","name":"BigWin","source":"github","ghOwner":"GeVsS","ghRepo":"Animation-check","ghBranch":"main","ghFolder":"Gangsteritos/popups mob","ghJsonName":"bigWinPopup.json","ghAtlasName":"popup.atlas","localJsonText":null,"localAtlasText":null,"localImageNames":null,"localImageDataUrls":null,"localName":null,"scale":0.38,"posX":371.5217391304348,"posY":497.30434782608694,"locked":false,"triggerAnim":"All in one2","buttonPos":{"x":79.26086956521739,"y":29.173913043478265},"dimEnabled":true,"dimOpacity":0.6},{"type":"popup","id":"popup3","name":"MaxWin","source":"github","ghOwner":"GeVsS","ghRepo":"Animation-check","ghBranch":"main","ghFolder":"Gangsteritos/popups mob","ghJsonName":"max_win.json","ghAtlasName":"popup.atlas","localJsonText":null,"localAtlasText":null,"localImageNames":null,"localImageDataUrls":null,"localName":null,"scale":0.3,"posX":383.86956521739125,"posY":498.95652173913044,"locked":false,"triggerAnim":"all","buttonPos":{"x":303.4347826086957,"y":25.826086956521742},"dimEnabled":true,"dimOpacity":0.6},{"type":"popup","id":"popup4","name":"bonusEnd","source":"github","ghOwner":"GeVsS","ghRepo":"Animation-check","ghBranch":"main","ghFolder":"Gangsteritos/popups mob","ghJsonName":"bonusEnd.json","ghAtlasName":"popup.atlas","localJsonText":null,"localAtlasText":null,"localImageNames":null,"localImageDataUrls":null,"localName":null,"scale":0.35,"posX":377.6521739130435,"posY":496.8695652173913,"locked":false,"triggerAnim":"all","buttonPos":{"x":188.2608695652174,"y":29.173913043478276},"dimEnabled":true,"dimOpacity":0.65},{"type":"image","id":"img2","name":"Gel","source":"url","src":"https://raw.githubusercontent.com/GeVsS/Animation-check/refs/heads/main/Gangsteritos/assets/gel.png","offsetX":433,"offsetY":745,"scale":1,"locked":true},{"type":"popup","id":"popup5","name":"wild nap","source":"github","ghOwner":"GeVsS","ghRepo":"Animation-check","ghBranch":"main","ghFolder":"Gangsteritos/icons web","ghJsonName":"wildRappit.json","ghAtlasName":"icons.atlas","localJsonText":null,"localAtlasText":null,"localImageNames":null,"localImageDataUrls":null,"localName":null,"scale":0.55,"posX":233.8695652173913,"posY":515.8260869565217,"locked":false,"triggerAnim":"wildExp","buttonPos":{"x":562.3478260869566,"y":28.260869565217394},"dimEnabled":true,"dimOpacity":0},{"type":"popup","id":"popup6","name":"wild wolf","source":"github","ghOwner":"GeVsS","ghRepo":"Animation-check","ghBranch":"main","ghFolder":"Gangsteritos/icons web","ghJsonName":"wildWolf.json","ghAtlasName":"icons.atlas","localJsonText":null,"localAtlasText":null,"localImageNames":null,"localImageDataUrls":null,"localName":null,"scale":0.55,"posX":519.7391304347826,"posY":515.7391304347826,"locked":false,"triggerAnim":"wildEXP","buttonPos":{"x":678.4347826086956,"y":24.782608695652172},"dimEnabled":true,"dimOpacity":0},{"type":"popup","id":"popup7","name":"rabbit","source":"github","ghOwner":"GeVsS","ghRepo":"Animation-check","ghBranch":"main","ghFolder":"Gangsteritos/characters mob","ghJsonName":"rabbit.json","ghAtlasName":"characters.atlas","localJsonText":null,"localAtlasText":null,"localImageNames":null,"localImageDataUrls":null,"localName":null,"scale":0.45,"posX":155,"posY":930,"locked":false,"triggerAnim":"all","buttonPos":{"x":73,"y":165},"dimEnabled":true,"dimOpacity":0},{"type":"grid"},{"type":"image","id":"img3","name":"grey","source":"local","src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAB1kAAAEdCAYAAABOjt7iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAq1SURBVHhe7dmxCcAwEMBAx3v8/mMmfcBg9XelVtAzM+8CAAAAAAAA4Mr+BwAAAAAAAADOTFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACAwGQFAAAAAAAACExWAAAAAAAAgMBkBQAAAAAAAAhMVgAAAAAAAIDAZAUAAAAAAAAITFYAAAAAAACA4AOY7wOQQxwxVQAAAABJRU5ErkJggg==","offsetX":-3.260869565217391,"offsetY":-70,"scale":0.4382420698210174,"locked":false},{"type":"image","id":"img4","name":"BG","source":"url","src":"https://raw.githubusercontent.com/GeVsS/Animation-check/refs/heads/main/Gangsteritos/assets/bg.png","offsetX":1,"offsetY":-150,"scale":1,"locked":true}],"symbols":[{"id":1,"name":"Symbol 1","baseSize":200,"fitPadding":0.9,"source":null,"isExplode":false,"isWild":false,"isFreeLayer":false,"freeLayerScale":1,"freeLayerX":null,"freeLayerY":null,"freeLayerAnim":null},{"id":2,"name":"01","baseSize":200,"fitPadding":0.9,"source":"github","isExplode":false,"isWild":false,"isFreeLayer":false,"freeLayerScale":1,"freeLayerX":null,"freeLayerY":null,"freeLayerAnim":null,"ghOwner":"GeVsS","ghRepo":"Animation-check","ghBranch":"main","ghFolder":"Gangsteritos/icons web","ghJsonName":"01.json","ghAtlasName":"icons.atlas"},{"id":3,"name":"02","baseSize":200,"fitPadding":0.9,"source":"github","isExplode":false,"isWild":false,"isFreeLayer":false,"freeLayerScale":1,"freeLayerX":null,"freeLayerY":null,"freeLayerAnim":null,"ghOwner":"GeVsS","ghRepo":"Animation-check","ghBranch":"main","ghFolder":"Gangsteritos/icons web","ghJsonName":"02.json","ghAtlasName":"icons.atlas"},{"id":4,"name":"03","baseSize":200,"fitPadding":0.9,"source":"github","isExplode":false,"isWild":false,"isFreeLayer":false,"freeLayerScale":1,"freeLayerX":null,"freeLayerY":null,"freeLayerAnim":null,"ghOwner":"GeVsS","ghRepo":"Animation-check","ghBranch":"main","ghFolder":"Gangsteritos/icons web","ghJsonName":"03.json","ghAtlasName":"icons.atlas"},{"id":5,"name":"04","baseSize":200,"fitPadding":0.9,"source":"github","isExplode":false,"isWild":false,"isFreeLayer":false,"freeLayerScale":1,"freeLayerX":null,"freeLayerY":null,"freeLayerAnim":null,"ghOwner":"GeVsS","ghRepo":"Animation-check","ghBranch":"main","ghFolder":"Gangsteritos/icons web","ghJsonName":"04.json","ghAtlasName":"icons.atlas"},{"id":6,"name":"05","baseSize":200,"fitPadding":0.9,"source":"github","isExplode":false,"isWild":false,"isFreeLayer":false,"freeLayerScale":1,"freeLayerX":null,"freeLayerY":null,"freeLayerAnim":null,"ghOwner":"GeVsS","ghRepo":"Animation-check","ghBranch":"main","ghFolder":"Gangsteritos/icons web","ghJsonName":"05.json","ghAtlasName":"icons.atlas"},{"id":7,"name":"10","baseSize":200,"fitPadding":0.9,"source":"github","isExplode":false,"isWild":false,"isFreeLayer":false,"freeLayerScale":1,"freeLayerX":null,"freeLayerY":null,"freeLayerAnim":null,"ghOwner":"GeVsS","ghRepo":"Animation-check","ghBranch":"main","ghFolder":"Gangsteritos/icons web","ghJsonName":"10.json","ghAtlasName":"icons.atlas"},{"id":8,"name":"A","baseSize":200,"fitPadding":0.9,"source":"github","isExplode":false,"isWild":false,"isFreeLayer":false,"freeLayerScale":1,"freeLayerX":null,"freeLayerY":null,"freeLayerAnim":null,"ghOwner":"GeVsS","ghRepo":"Animation-check","ghBranch":"main","ghFolder":"Gangsteritos/icons web","ghJsonName":"A.json","ghAtlasName":"icons.atlas"},{"id":9,"name":"J","baseSize":200,"fitPadding":0.9,"source":"github","isExplode":false,"isWild":false,"isFreeLayer":false,"freeLayerScale":1,"freeLayerX":null,"freeLayerY":null,"freeLayerAnim":null,"ghOwner":"GeVsS","ghRepo":"Animation-check","ghBranch":"main","ghFolder":"Gangsteritos/icons web","ghJsonName":"J.json","ghAtlasName":"icons.atlas"},{"id":10,"name":"K","baseSize":200,"fitPadding":0.9,"source":"github","isExplode":false,"isWild":false,"isFreeLayer":false,"freeLayerScale":1,"freeLayerX":null,"freeLayerY":null,"freeLayerAnim":null,"ghOwner":"GeVsS","ghRepo":"Animation-check","ghBranch":"main","ghFolder":"Gangsteritos/icons web","ghJsonName":"K.json","ghAtlasName":"icons.atlas"},{"id":11,"name":"Q","baseSize":200,"fitPadding":0.9,"source":"github","isExplode":false,"isWild":false,"isFreeLayer":false,"freeLayerScale":1,"freeLayerX":null,"freeLayerY":null,"freeLayerAnim":null,"ghOwner":"GeVsS","ghRepo":"Animation-check","ghBranch":"main","ghFolder":"Gangsteritos/icons web","ghJsonName":"Q.json","ghAtlasName":"icons.atlas"},{"id":12,"name":"scatter","baseSize":200,"fitPadding":0.9,"source":"github","isExplode":false,"isWild":false,"isFreeLayer":false,"freeLayerScale":1,"freeLayerX":null,"freeLayerY":null,"freeLayerAnim":null,"ghOwner":"GeVsS","ghRepo":"Animation-check","ghBranch":"main","ghFolder":"Gangsteritos/icons web","ghJsonName":"scatter.json","ghAtlasName":"icons.atlas"},{"id":13,"name":"wildRappit","baseSize":200,"fitPadding":0.9,"source":"github","isExplode":false,"isWild":true,"isFreeLayer":false,"freeLayerScale":1,"freeLayerX":null,"freeLayerY":null,"freeLayerAnim":null,"ghOwner":"GeVsS","ghRepo":"Animation-check","ghBranch":"main","ghFolder":"Gangsteritos/icons web","ghJsonName":"wildRappit.json","ghAtlasName":"icons.atlas"},{"id":14,"name":"wildWolf","baseSize":200,"fitPadding":0.9,"source":"github","isExplode":false,"isWild":true,"isFreeLayer":false,"freeLayerScale":1,"freeLayerX":null,"freeLayerY":null,"freeLayerAnim":null,"ghOwner":"GeVsS","ghRepo":"Animation-check","ghBranch":"main","ghFolder":"Gangsteritos/icons web","ghJsonName":"wildWolf.json","ghAtlasName":"icons.atlas"}],"board":[{"row":0,"col":0,"symId":7},{"row":0,"col":1,"symId":4},{"row":0,"col":2,"symId":10},{"row":0,"col":3,"symId":10},{"row":0,"col":4,"symId":6},{"row":1,"col":0,"symId":10},{"row":1,"col":1,"symId":9},{"row":1,"col":2,"symId":2},{"row":1,"col":3,"symId":8},{"row":1,"col":4,"symId":3},{"row":2,"col":0,"symId":10},{"row":2,"col":1,"symId":2},{"row":2,"col":2,"symId":11},{"row":2,"col":3,"symId":14},{"row":2,"col":4,"symId":9},{"row":3,"col":0,"symId":5},{"row":3,"col":1,"symId":5},{"row":3,"col":2,"symId":13},{"row":3,"col":3,"symId":3},{"row":3,"col":4,"symId":10},{"row":4,"col":0,"symId":11},{"row":4,"col":1,"symId":5},{"row":4,"col":2,"symId":10},{"row":4,"col":3,"symId":4},{"row":4,"col":4,"symId":7}],"paylines":[{"id":1,"rowsPerCol":[0,0,0,0,0]},{"id":2,"rowsPerCol":[1,1,1,1,1]},{"id":3,"rowsPerCol":[2,2,2,2,2]},{"id":4,"rowsPerCol":[3,3,3,3,3]},{"id":5,"rowsPerCol":[0,1,0,1,0]},{"id":6,"rowsPerCol":[1,0,1,0,1]},{"id":7,"rowsPerCol":[2,1,2,1,2]},{"id":8,"rowsPerCol":[1,2,1,2,1]},{"id":9,"rowsPerCol":[2,3,2,3,2]},{"id":10,"rowsPerCol":[3,2,3,2,3]},{"id":11,"rowsPerCol":[3,4,3,4,3]},{"id":12,"rowsPerCol":[4,3,4,3,4]},{"id":13,"rowsPerCol":[4,4,4,4,4]},{"id":14,"rowsPerCol":[0,1,2,1,0]},{"id":15,"rowsPerCol":[1,2,3,2,1]},{"id":16,"rowsPerCol":[2,3,4,3,2]},{"id":17,"rowsPerCol":[4,3,2,3,1]},{"id":18,"rowsPerCol":[3,2,1,2,3]},{"id":19,"rowsPerCol":[2,1,0,1,2]},{"id":20,"rowsPerCol":[0,1,2,3,4]},{"id":21,"rowsPerCol":[4,3,2,1,0]},{"id":22,"rowsPerCol":[0,1,1,1,0]},{"id":23,"rowsPerCol":[1,2,2,2,1]},{"id":24,"rowsPerCol":[2,3,3,3,2]},{"id":25,"rowsPerCol":[3,4,4,4,4]},{"id":26,"rowsPerCol":[1,0,0,0,1]},{"id":27,"rowsPerCol":[2,1,1,1,2]},{"id":28,"rowsPerCol":[3,2,2,2,1]},{"id":29,"rowsPerCol":[4,3,3,3,4]},{"id":30,"rowsPerCol":[2,0,2,0,2]},{"id":31,"rowsPerCol":[3,1,3,1,3]},{"id":32,"rowsPerCol":[4,2,4,2,4]},{"id":33,"rowsPerCol":[0,0,1,0,0]},{"id":34,"rowsPerCol":[1,1,2,1,1]},{"id":35,"rowsPerCol":[2,2,3,2,2]},{"id":36,"rowsPerCol":[3,3,4,3,3]},{"id":37,"rowsPerCol":[1,1,0,1,1]}]};
+var canvas = document.getElementById("canvas");
+var gl = canvas.getContext("webgl", { alpha: true, premultipliedAlpha: false }) || canvas.getContext("experimental-webgl", { alpha: true, premultipliedAlpha: false });
+var renderer = new spine.SceneRenderer(canvas, gl);
+gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
+var nativeW = parseInt(PROJECT.canvasW) || 800, nativeH = parseInt(PROJECT.canvasH) || 600;
+function resizeCanvasForDPR() {
+  var dpr = window.devicePixelRatio || 1;
+  var w = Math.max(1, Math.floor(canvas.clientWidth * dpr));
+  var h = Math.max(1, Math.floor(canvas.clientHeight * dpr));
+  if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+}
+function bufferScale() { return canvas.width / nativeW; }
+function hasAnim(sd, name) { return sd.animations.some(function(a) { return a.name === name; }); }
+function playAnimSafe(sd, state, preferred, fallback) {
+  var use = null;
+  if (hasAnim(sd, preferred)) use = preferred;
+  else if (fallback && hasAnim(sd, fallback)) use = fallback;
+  else if (sd.animations.length > 0) use = sd.animations[0].name;
+  if (use) state.setAnimation(0, use, true);
+  return use;
+}
+var gridGeom = {};
+function computeGridGeometry() {
+  var cols = Math.max(1, parseInt(PROJECT.gridCols) || 1), rows = Math.max(1, parseInt(PROJECT.gridRows) || 1);
+  var hGap = parseFloat(PROJECT.hGap) || 0, vGap = parseFloat(PROJECT.vGap) || 0;
+  var gridW = parseFloat(PROJECT.gridWidth) || nativeW, gridH = parseFloat(PROJECT.gridHeight) || nativeH;
+  var gridOffX = parseFloat(PROJECT.gridOffsetX) || 0, gridOffY = parseFloat(PROJECT.gridOffsetY) || 0;
+  var cellW = (gridW - hGap * (cols - 1)) / cols, cellH = (gridH - vGap * (rows - 1)) / rows;
+  var centers = [];
+  for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) centers.push({ row: r, col: c, x: gridOffX + c * (cellW + hGap) + cellW / 2, y: gridOffY + r * (cellH + vGap) + cellH / 2 });
+  gridGeom = { cols: cols, rows: rows, cellW: cellW, cellH: cellH, cellStepY: cellH + vGap, cellCenters: centers, gridW: gridW, gridH: gridH, gridOffX: gridOffX, gridOffY: gridOffY };
+}
+computeGridGeometry();
+function cellCenterFor(row, col) { return gridGeom.cellCenters.filter(function(g) { return g.row === row && g.col === col; })[0]; }
+function colCenterX(col) { var f = gridGeom.cellCenters.filter(function(g) { return g.col === col; })[0]; return f ? f.x : 0; }
+function rowCenterYForBaseRow(baseRow) { var row0 = gridGeom.cellCenters.filter(function(g) { return g.row === 0; })[0]; var y0 = row0 ? row0.y : gridGeom.gridOffY + gridGeom.cellH / 2; return y0 + baseRow * gridGeom.cellStepY; }
+function getMaskRect() {
+  var extraW = parseFloat(PROJECT.maskExtraW) || 0, extraH = parseFloat(PROJECT.maskExtraH) || 0;
+  var maskW = gridGeom.gridW + extraW, maskH = gridGeom.gridH + extraH;
+  var cx = gridGeom.gridOffX + gridGeom.gridW / 2, cy = gridGeom.gridOffY + gridGeom.gridH / 2;
+  return { left: cx - maskW / 2, top: cy - maskH / 2, w: maskW, h: maskH };
+}
+function getScissorRectBuffer() {
+  var m = getMaskRect(); var s = bufferScale();
+  return { x: Math.round(m.left * s), y: Math.round(canvas.height - (m.top + m.h) * s), w: Math.round(m.w * s), h: Math.round(m.h * s) };
+}
+function globalScale() { return parseFloat(PROJECT.globalSymbolScale) || 1; }
+var sceneLayers = (PROJECT.sceneStack || [{ type: "grid" }]).map(function(ls) {
+  if (ls.type === "grid") return { type: "grid" };
+  if (ls.type === "popup") {
+    var pLayer = { type: "popup", name: ls.name, scale: ls.scale || 1, posX: (ls.posX !== undefined ? ls.posX : nativeW / 2), posY: (ls.posY !== undefined ? ls.posY : nativeH / 2), visible: false, skeleton: null, state: null, skeletonDataRef: null, triggerAnim: ls.triggerAnim, dimEnabled: ls.dimEnabled !== false, dimOpacity: (ls.dimOpacity != null ? ls.dimOpacity : 0.6), dimTexture: null, dimOpacityCached: null };
+    var stageEl = document.querySelector(".stage");
+    var btn = document.createElement("button");
+    btn.className = "popupTriggerBtn"; btn.textContent = "\uD83C\uDF81 " + ls.name;
+    var bx = ls.buttonPos ? ls.buttonPos.x : nativeW / 2, by = ls.buttonPos ? ls.buttonPos.y : 40;
+    btn.style.left = (bx / nativeW * 100) + "%"; btn.style.top = (by / nativeH * 100) + "%";
+    btn.addEventListener("click", function() {
+      if (!pLayer.skeleton || !pLayer.state) return;
+      pLayer.visible = !pLayer.visible;
+      if (pLayer.visible && pLayer.triggerAnim) {
+        pLayer.state.clearTracks();
+        pLayer.skeleton.setToSetupPose();
+        playAnimSafe(pLayer.skeletonDataRef, pLayer.state, pLayer.triggerAnim, null);
+        var track = pLayer.state.tracks && pLayer.state.tracks[0];
+        if (track) track.trackTime = 0;
+      }
+    });
+    stageEl.appendChild(btn);
+    var popupLoadPromise = ls.source === "github" ? loadGithubSymbol(ls) : (ls.source === "local" ? loadLocalSymbol(ls) : Promise.reject(new Error("no source")));
+    popupLoadPromise.then(function(sd) {
+      pLayer.skeletonDataRef = sd;
+      pLayer.skeleton = new spine.Skeleton(sd);
+      pLayer.state = new spine.AnimationState(new spine.AnimationStateData(sd));
+    }).catch(function() {});
+    return pLayer;
+  }
+  var layer = { type: "image", name: ls.name, offsetX: ls.offsetX || 0, offsetY: ls.offsetY || 0, scale: ls.scale || 1, texture: null, imageObj: null };
+  if (ls.src) {
+    var img = new Image();
+    if (ls.src.indexOf("data:") !== 0) img.crossOrigin = "Anonymous";
+    img.onload = function() { try { layer.texture = new spine.GLTexture(gl, img); layer.imageObj = img; } catch (e) {} };
+    img.src = ls.src;
+  }
+  return layer;
+});
+function buildTextureAtlasFromMap(atlasText, textureLookup) {
+  var atlas = new spine.TextureAtlas(atlasText);
+  atlas.setTextures({ get: function(name) { return textureLookup[name]; } }, "");
+  atlas.pages.forEach(function(p) { if (p.texture) { p.texture.setFilters(spine.TextureFilter.Linear, spine.TextureFilter.Linear); p.texture.setWraps(spine.TextureWrap.ClampToEdge, spine.TextureWrap.ClampToEdge); } });
+  return (atlas.pages[0] && atlas.pages[0].texture) ? atlas : null;
+}
+function loadImageAsTexture(src) {
+  return new Promise(function(resolve, reject) {
+    var img = new Image();
+    img.onload = function() { try { resolve(new spine.GLTexture(gl, img)); } catch (e) { reject(e); } };
+    img.onerror = function() { reject(new Error("image load failed")); };
+    img.src = src;
+  });
+}
+function loadLocalSymbol(s) {
+  var names = s.localImageNames || [];
+  return Promise.all(names.map(function(n) { return loadImageAsTexture(s.localImageDataUrls[n]); })).then(function(loaded) {
+    var lookup = {}; names.forEach(function(n, i) { lookup[n] = loaded[i]; });
+    var atlas = buildTextureAtlasFromMap(s.localAtlasText, lookup);
+    if (!atlas) throw new Error("bad atlas");
+    var loader = new spine.AtlasAttachmentLoader(atlas);
+    var skJson = new spine.SkeletonJson(loader);
+    return skJson.readSkeletonData(s.localJsonText);
+  });
+}
+function loadGithubSymbol(s) {
+  var basePath = "https://raw.githubusercontent.com/" + s.ghOwner + "/" + s.ghRepo + "/refs/heads/" + s.ghBranch + "/" + (s.ghFolder ? s.ghFolder.split("/").map(encodeURIComponent).join("/") + "/" : "");
+  var am = new spine.AssetManager(gl, basePath);
+  am.loadText(s.ghJsonName); am.loadTextureAtlas(s.ghAtlasName);
+  return new Promise(function(resolve, reject) {
+    function poll() {
+      if (am.isLoadingComplete()) {
+        if (am.hasErrors()) { reject(new Error("github load failed")); return; }
+        try {
+          var atlas = am.get(s.ghAtlasName);
+          var loader = new spine.AtlasAttachmentLoader(atlas);
+          var skJson = new spine.SkeletonJson(loader);
+          resolve(skJson.readSkeletonData(am.get(s.ghJsonName)));
+        } catch (e) { reject(e); }
+      } else requestAnimationFrame(poll);
+    }
+    requestAnimationFrame(poll);
+  });
+}
+var symLibrary = {};
+var freeLayers = {};
+(PROJECT.symbols || []).forEach(function(s) {
+  symLibrary[s.id] = { id: s.id, name: s.name, baseSize: s.baseSize, fitPadding: s.fitPadding, isExplode: !!s.isExplode, isWild: !!s.isWild, isFreeLayer: !!s.isFreeLayer, freeLayerScale: s.freeLayerScale || 1, freeLayerX: s.freeLayerX, freeLayerY: s.freeLayerY, freeLayerAnim: s.freeLayerAnim, skeletonData: null, status: "loading" };
+  var entry = symLibrary[s.id];
+  var loadPromise = s.source === "github" ? loadGithubSymbol(s) : (s.source === "local" ? loadLocalSymbol(s) : Promise.reject(new Error("no source")));
+  loadPromise.then(function(sd) {
+    entry.skeletonData = sd; entry.status = "ready";
+    hydrateBoardForSymbol(entry.id);
+    if (entry.isFreeLayer) enableFreeLayer(entry);
+  }).catch(function() { entry.status = "error"; });
+});
+function getReadySymbolIds() { return Object.keys(symLibrary).filter(function(id) { return symLibrary[id].status === "ready" && !symLibrary[id].isExplode && !symLibrary[id].isFreeLayer; }).map(Number); }
+function randomReadySymbolId() { var ids = getReadySymbolIds(); return ids.length ? ids[Math.floor(Math.random() * ids.length)] : null; }
+function getActiveExplodeEntry() { var id = Object.keys(symLibrary).filter(function(id) { return symLibrary[id].status === "ready" && symLibrary[id].isExplode; })[0]; return id ? symLibrary[id] : null; }
+function enableFreeLayer(entry) {
+  if (!entry.skeletonData || entry.freeLayerX == null) return;
+  var skeleton = new spine.Skeleton(entry.skeletonData);
+  var state = new spine.AnimationState(new spine.AnimationStateData(entry.skeletonData));
+  if (entry.freeLayerAnim) state.setAnimation(0, entry.freeLayerAnim, true);
+  freeLayers[entry.id] = { entry: entry, skeleton: skeleton, state: state };
+}
+var board = [];
+function resizeBoardToGrid() {
+  var newBoard = [];
+  gridGeom.cellCenters.forEach(function(cell) {
+    var existing = board.filter(function(b) { return b.row === cell.row && b.col === cell.col; })[0];
+    newBoard.push(existing || { row: cell.row, col: cell.col, symId: null, skeleton: null, state: null, dropAnim: null, exitAnim: null, isProcessingWin: false });
+  });
+  board = newBoard;
+}
+resizeBoardToGrid();
+function assignSymbolToCell(cell, symId) {
+  var entry = symLibrary[symId]; if (!entry || !entry.skeletonData) return false;
+  cell.symId = symId; cell.skeleton = new spine.Skeleton(entry.skeletonData);
+  cell.state = new spine.AnimationState(new spine.AnimationStateData(entry.skeletonData));
+  playAnimSafe(entry.skeletonData, cell.state, "idle", null);
+  return true;
+}
+function hydrateBoardForSymbol(symId) { board.forEach(function(cell) { if (cell.symId === symId && !cell.skeleton) assignSymbolToCell(cell, symId); }); }
+function randomizeBoard() {
+  var ids = getReadySymbolIds(); if (ids.length === 0) return;
+  board.forEach(function(cell) { cell.dropAnim = null; cell.exitAnim = null; cell.isProcessingWin = false; assignSymbolToCell(cell, ids[Math.floor(Math.random() * ids.length)]); });
+  if (currentMode === "classic") evaluatePaylinesAndPresent(); else scheduleCascadeRecheck(50);
+}
+var oldToNewBoardId = {};
+(PROJECT.symbols || []).forEach(function(s) { oldToNewBoardId[s.id] = s.id; });
+function restoreInitialBoard() {
+  (PROJECT.board || []).forEach(function(b) {
+    var cell = board.filter(function(c) { return c.row === b.row && c.col === b.col; })[0];
+    if (cell && b.symId != null) { cell.symId = b.symId; var e = symLibrary[b.symId]; if (e && e.skeletonData) assignSymbolToCell(cell, b.symId); }
+  });
+}
+var currentMode = PROJECT.mode === "cascade" ? "cascade" : "classic";
+var paylines = (PROJECT.paylines || []).map(function(pl) { return { id: pl.id, rowsPerCol: pl.rowsPerCol.slice() }; });
+function evaluateLine(rowsPerCol, minLen) {
+  var cols = gridGeom.cols; var syms = [];
+  for (var c = 0; c < cols; c++) { var cell = board.filter(function(b) { return b.row === rowsPerCol[c] && b.col === c; })[0]; syms.push(cell ? cell.symId : null); }
+  var baseSym = null;
+  for (var c2 = 0; c2 < cols; c2++) { var sid = syms[c2]; if (sid == null) break; var e = symLibrary[sid]; if (!e) break; if (!e.isWild) { baseSym = sid; break; } }
+  if (baseSym == null) return null;
+  var runLength = 0;
+  for (var c3 = 0; c3 < cols; c3++) { var sid2 = syms[c3]; if (sid2 == null) break; var e2 = symLibrary[sid2]; if (!e2) break; if (sid2 === baseSym || e2.isWild) runLength++; else break; }
+  if (runLength >= minLen) { var cells = []; for (var c4 = 0; c4 < runLength; c4++) cells.push({ row: rowsPerCol[c4], col: c4 }); return { length: runLength, cells: cells }; }
+  return null;
+}
+var winPresentationToken = 0;
+function applyWinNoWin(winCells) {
+  board.forEach(function(cell) {
+    if (!cell.skeleton || !cell.state || !cell.symId) return;
+    var entry = symLibrary[cell.symId]; if (!entry || !entry.skeletonData) return;
+    var isWin = winCells.some(function(rc) { return rc.row === cell.row && rc.col === cell.col; });
+    playAnimSafe(entry.skeletonData, cell.state, isWin ? "win" : "noWin", "idle");
+  });
+}
+function resetAllToIdle() {
+  winPresentationToken++;
+  board.forEach(function(cell) { if (!cell.skeleton || !cell.state || !cell.symId) return; var entry = symLibrary[cell.symId]; if (!entry || !entry.skeletonData) return; playAnimSafe(entry.skeletonData, cell.state, "idle", null); });
+}
+function getAnimDurationSeconds(entry, animName) { if (!entry || !entry.skeletonData) return 1; var a = entry.skeletonData.animations.filter(function(x) { return x.name === animName; })[0]; return a ? a.duration : 1; }
+function maxWinDurationForCells(cells) {
+  var maxD = 0;
+  cells.forEach(function(rc) { var cell = board.filter(function(b) { return b.row === rc.row && b.col === rc.col; })[0]; if (!cell || !cell.symId) return; var d = getAnimDurationSeconds(symLibrary[cell.symId], "win"); if (d > maxD) maxD = d; });
+  return maxD || 1;
+}
+function startWinPresentation(winningLines) {
+  winPresentationToken++; var myToken = winPresentationToken;
+  var allCells = []; winningLines.forEach(function(line) { line.cells.forEach(function(rc) { if (!allCells.some(function(x) { return x.row === rc.row && x.col === rc.col; })) allCells.push(rc); }); });
+  applyWinNoWin(allCells);
+  setTimeout(function() { if (myToken !== winPresentationToken) return; cycleLines(winningLines, 0, myToken); }, maxWinDurationForCells(allCells) * 1000);
+}
+function cycleLines(lines, idx, token) {
+  if (token !== winPresentationToken) return;
+  var line = lines[idx % lines.length]; applyWinNoWin(line.cells);
+  setTimeout(function() { if (token !== winPresentationToken) return; cycleLines(lines, idx + 1, token); }, maxWinDurationForCells(line.cells) * 1000);
+}
+function evaluatePaylinesAndPresent() {
+  var minLen = parseInt(PROJECT.minLineLen) || 3; var winningLines = [];
+  paylines.forEach(function(pl) { var r = evaluateLine(pl.rowsPerCol, minLen); if (r) winningLines.push(r); });
+  if (winningLines.length === 0) { resetAllToIdle(); return; }
+  startWinPresentation(winningLines);
+}
+var reelState = [];
+function resizeReelStateToGrid() {
+  var cols = gridGeom.cols, rows = gridGeom.rows; var s = [];
+  for (var c = 0; c < cols; c++) s.push({ phase: "idle", offsetPx: 0, speed: 0, stripSymbols: new Array(rows + 1).fill(null), stripInstances: new Array(rows + 1).fill(null), finalResults: null, landingQueue: null, stopTriggerTime: 0 });
+  reelState = s;
+}
+resizeReelStateToGrid();
+function createSpinInstance(symId) {
+  var entry = symLibrary[symId]; if (!entry || !entry.skeletonData) return null;
+  var skeleton = new spine.Skeleton(entry.skeletonData);
+  var state = new spine.AnimationState(new spine.AnimationStateData(entry.skeletonData));
+  playAnimSafe(entry.skeletonData, state, "blur", "idle");
+  return { symId: symId, skeleton: skeleton, state: state, entry: entry };
+}
+function isAnySpinning() { return reelState.some(function(r) { return r.phase !== "idle"; }); }
+function startClassicSpin() {
+  if (isAnySpinning() || getReadySymbolIds().length === 0) return;
+  var rows = gridGeom.rows, baseDuration = parseFloat(PROJECT.spinDuration) || 900, stagger = parseFloat(PROJECT.colStagger) || 180, now = performance.now();
+  winPresentationToken++;
+  for (var c = 0; c < gridGeom.cols; c++) {
+    var st = reelState[c]; st.phase = "spinning"; st.offsetPx = 0; st.speed = parseFloat(PROJECT.spinSpeed) || 2200;
+    st.finalResults = []; for (var r = 0; r < rows; r++) st.finalResults.push(randomReadySymbolId());
+    var reelDelay = (PROJECT.reelDelays && PROJECT.reelDelays[c] !== undefined && PROJECT.reelDelays[c] !== null) ? PROJECT.reelDelays[c] : c * stagger;
+    st.landingQueue = null; st.stopTriggerTime = now + baseDuration + reelDelay;
+    for (var i = 0; i < st.stripSymbols.length; i++) { var rs = randomReadySymbolId(); st.stripSymbols[i] = rs; st.stripInstances[i] = createSpinInstance(rs); }
+  }
+}
+function tickColumn(col) {
+  var st = reelState[col], rows = gridGeom.rows, now = performance.now(), newSymId;
+  if (now < st.stopTriggerTime) { newSymId = randomReadySymbolId(); }
+  else { if (!st.landingQueue) { var q = st.finalResults.slice().reverse(); q.push(randomReadySymbolId()); st.landingQueue = q; st.phase = "landing"; } newSymId = st.landingQueue.length ? st.landingQueue.shift() : randomReadySymbolId(); }
+  st.stripSymbols.pop(); st.stripSymbols.unshift(newSymId); st.stripInstances.pop(); st.stripInstances.unshift(createSpinInstance(newSymId));
+  if (st.phase === "landing" && st.landingQueue && st.landingQueue.length === 0) {
+    st.phase = "idle"; st.offsetPx = 0; st.speed = 0; st.landingQueue = null;
+    for (var r = 0; r < rows; r++) { var cell = board.filter(function(b) { return b.row === r && b.col === col; })[0]; if (cell) assignSymbolToCell(cell, st.finalResults[r]); }
+    if (!isAnySpinning()) evaluatePaylinesAndPresent();
+  } else if (st.phase === "landing") { st.speed *= 0.72; }
+}
+function updateReels(delta) {
+  for (var c = 0; c < reelState.length; c++) {
+    var st = reelState[c]; if (st.phase === "idle") continue;
+    st.offsetPx += st.speed * delta; var step = gridGeom.cellStepY, guard = 0;
+    while (st.offsetPx >= step && guard < 20) { st.offsetPx -= step; tickColumn(c); guard++; if (reelState[c].phase === "idle") break; }
+  }
+}
+var EXPLODE_EVENT_NAME = "explode";
+var activeEffects = [];
+function startDropAnim(cell, extraFallRows, delayMs) { cell.exitAnim = null; cell.dropAnim = { startTime: performance.now() + (delayMs || 0), duration: parseFloat(PROJECT.dropDuration) || 280, fromOffset: -gridGeom.cellStepY * (1 + (extraFallRows || 0)) }; }
+function getCellDropOffset(cell) { if (!cell.dropAnim) return 0; var t = (performance.now() - cell.dropAnim.startTime) / cell.dropAnim.duration; if (t <= 0) return cell.dropAnim.fromOffset; if (t >= 1) { cell.dropAnim = null; return 0; } return cell.dropAnim.fromOffset * (1 - (1 - Math.pow(1 - t, 3))); }
+function startExitAnim(cell, delayMs, duration) { cell.dropAnim = null; cell.exitAnim = { startTime: performance.now() + (delayMs || 0), duration: duration, toOffset: gridGeom.cellStepY * (gridGeom.rows + 1) }; }
+function getCellExitOffset(cell) { if (!cell.exitAnim) return null; var t = (performance.now() - cell.exitAnim.startTime) / cell.exitAnim.duration; if (t <= 0) return 0; if (t >= 1) return cell.exitAnim.toOffset; return cell.exitAnim.toOffset * (t * t); }
+function spawnExplodeEffect(rc) {
+  var fxEntry = getActiveExplodeEntry(); if (!fxEntry) return;
+  var geomCell = cellCenterFor(rc.row, rc.col); if (!geomCell) return;
+  var skeleton = new spine.Skeleton(fxEntry.skeletonData);
+  var state = new spine.AnimationState(new spine.AnimationStateData(fxEntry.skeletonData));
+  var animName = fxEntry.skeletonData.animations.length > 0 ? fxEntry.skeletonData.animations[0].name : null;
+  if (animName) state.setAnimation(0, animName, false);
+  var fx = { skeleton: skeleton, state: state, entry: fxEntry, x: geomCell.x, y: geomCell.y, done: false };
+  state.addListener({ complete: function() { fx.done = true; } });
+  activeEffects.push(fx);
+}
+function collapseCascadeColumn(row, col) {
+  var colCells = board.filter(function(b) { return b.col === col; }).sort(function(a, b) { return a.row - b.row; });
+  for (var r = row; r > 0; r--) { var t = colCells[r], s = colCells[r - 1]; t.symId = s.symId; t.skeleton = s.skeleton; t.state = s.state; startDropAnim(t); }
+  var topCell = colCells[0]; var newSymId = randomReadySymbolId();
+  if (newSymId != null) { assignSymbolToCell(topCell, newSymId); startDropAnim(topCell); } else { topCell.symId = null; topCell.skeleton = null; topCell.state = null; }
+  colCells.forEach(function(cc) { cc.isProcessingWin = false; });
+  scheduleCascadeRecheck((parseFloat(PROJECT.dropDuration) || 280) + 80);
+}
+function triggerWinOnCascadeCell(cell) {
+  cell.isProcessingWin = true;
+  var entry = symLibrary[cell.symId]; if (!entry || !entry.skeletonData || !cell.state) { cell.isProcessingWin = false; return; }
+  if (!hasAnim(entry.skeletonData, "win")) { collapseCascadeColumn(cell.row, cell.col); return; }
+  var explodedAlready = false, row = cell.row, col = cell.col;
+  var listener = {
+    event: function(te, ev) { if (!explodedAlready && ev.data.name === EXPLODE_EVENT_NAME) { explodedAlready = true; spawnExplodeEffect({ row: row, col: col }); } },
+    complete: function() { if (!explodedAlready) { explodedAlready = true; spawnExplodeEffect({ row: row, col: col }); } collapseCascadeColumn(row, col); cell.state.removeListener(listener); }
+  };
+  cell.state.addListener(listener); cell.state.setAnimation(0, "win", false);
+}
+function findClusters() {
+  var minSize = parseInt(PROJECT.minClusterSize) || 5; var visitedStart = {}; var clusters = [];
+  board.forEach(function(startCell) {
+    var startKey = startCell.row + "," + startCell.col;
+    if (visitedStart[startKey] || startCell.symId == null || startCell.isProcessingWin) return;
+    var startEntry = symLibrary[startCell.symId]; if (!startEntry || startEntry.isWild) return;
+    var stack = [startCell], group = [], localVisited = {};
+    while (stack.length) {
+      var cur = stack.pop(); var ckey = cur.row + "," + cur.col; if (localVisited[ckey]) continue;
+      localVisited[ckey] = true; group.push(cur);
+      [[cur.row - 1, cur.col], [cur.row + 1, cur.col], [cur.row, cur.col - 1], [cur.row, cur.col + 1]].forEach(function(rc) {
+        var nb = board.filter(function(b) { return b.row === rc[0] && b.col === rc[1]; })[0];
+        if (!nb || nb.symId == null || nb.isProcessingWin) return;
+        var nkey = rc[0] + "," + rc[1]; if (localVisited[nkey]) return;
+        var nEntry = symLibrary[nb.symId]; if (!nEntry) return;
+        if (nb.symId === startCell.symId || nEntry.isWild) stack.push(nb);
+      });
+    }
+    group.forEach(function(g) { visitedStart[g.row + "," + g.col] = true; });
+    if (group.length >= minSize) clusters.push({ cells: group.map(function(g) { return { row: g.row, col: g.col }; }) });
+  });
+  return clusters;
+}
+var cascadeRecheckScheduled = false;
+function scheduleCascadeRecheck(delayMs) { if (currentMode !== "cascade" || cascadeRecheckScheduled) return; cascadeRecheckScheduled = true; setTimeout(function() { cascadeRecheckScheduled = false; checkCascadeWins(); }, delayMs); }
+function checkCascadeWins() {
+  var clusters = findClusters(); if (clusters.length === 0) return;
+  var allCells = [], seen = {};
+  clusters.forEach(function(cl) { cl.cells.forEach(function(rc) { var k = rc.row + "," + rc.col; if (seen[k]) return; seen[k] = true; var cell = board.filter(function(b) { return b.row === rc.row && b.col === rc.col; })[0]; if (cell) allCells.push(cell); }); });
+  allCells.forEach(function(cell) { triggerWinOnCascadeCell(cell); });
+}
+function cascadeSpin() {
+  var readyIds = getReadySymbolIds(); if (readyIds.length === 0) return;
+  var rows = gridGeom.rows, cols = gridGeom.cols, rowStaggerMs = 60, dropDur = parseFloat(PROJECT.dropDuration) || 280;
+  var exitPhaseTotal = dropDur + (rows - 1) * rowStaggerMs + 60;
+  for (var c = 0; c < cols; c++) { var colCells = board.filter(function(b) { return b.col === c; }).sort(function(a, b) { return a.row - b.row; }); for (var r = 0; r < rows; r++) { var delay = (rows - 1 - r) * rowStaggerMs; startExitAnim(colCells[r], delay, dropDur); colCells[r].isProcessingWin = false; } }
+  setTimeout(function() {
+    for (var c2 = 0; c2 < cols; c2++) {
+      var colCells2 = board.filter(function(b) { return b.col === c2; }).sort(function(a, b) { return a.row - b.row; });
+      for (var r2 = 0; r2 < rows; r2++) { var newSymId = randomReadySymbolId(); var cell = colCells2[r2]; if (newSymId != null) assignSymbolToCell(cell, newSymId); else { cell.symId = null; cell.skeleton = null; cell.state = null; } startDropAnim(cell, r2, (rows - 1 - r2) * rowStaggerMs); }
+    }
+    scheduleCascadeRecheck(dropDur + (rows - 1) * rowStaggerMs + 80);
+  }, exitPhaseTotal);
+}
+document.getElementById("onCanvasDiceBtn").addEventListener("click", randomizeBoard);
+document.getElementById("onCanvasSpinBtn").addEventListener("click", function() { if (currentMode === "classic") startClassicSpin(); else cascadeSpin(); });
+if (PROJECT.controlsPos) {
+  var ctrlEl = document.getElementById("onCanvasControls");
+  ctrlEl.style.left = (PROJECT.controlsPos.x / nativeW * 100) + "%";
+  ctrlEl.style.top = (PROJECT.controlsPos.y / nativeH * 100) + "%";
+}
+var lastFrameTime = performance.now() / 1000;
+function renderGridBlock(delta, gScale) {
+  renderer.end(); renderer.begin();
+  var rect = getScissorRectBuffer();
+  gl.enable(gl.SCISSOR_TEST); gl.scissor(rect.x, rect.y, Math.max(0, rect.w), Math.max(0, rect.h));
+  for (var c = 0; c < gridGeom.cols; c++) {
+    var st = reelState[c];
+    if (st && st.phase !== "idle") {
+      for (var i = 0; i < st.stripInstances.length; i++) {
+        var inst = st.stripInstances[i]; if (!inst) continue;
+        var baseRow = i - 1; var cx = colCenterX(c); var cy = rowCenterYForBaseRow(baseRow) + st.offsetPx;
+        var fitDim = Math.min(gridGeom.cellW, gridGeom.cellH) * (inst.entry.fitPadding || 0.9);
+        var scale = (inst.entry.baseSize > 0 ? (fitDim / inst.entry.baseSize) : 1) * gScale;
+        inst.skeleton.x = cx; inst.skeleton.y = -cy; inst.skeleton.scaleX = scale; inst.skeleton.scaleY = scale;
+        inst.skeleton.updateWorldTransform(); inst.state.update(delta); inst.state.apply(inst.skeleton); inst.skeleton.updateWorldTransform();
+        renderer.drawSkeleton(inst.skeleton, false);
+      }
+    } else {
+      board.filter(function(b) { return b.col === c; }).forEach(function(cell) {
+        if (!cell.skeleton || !cell.state) return;
+        var entry = symLibrary[cell.symId]; var geomCell = cellCenterFor(cell.row, cell.col); if (!geomCell || !entry) return;
+        var fitDim2 = Math.min(gridGeom.cellW, gridGeom.cellH) * entry.fitPadding;
+        var scale2 = (entry.baseSize > 0 ? (fitDim2 / entry.baseSize) : 1) * gScale;
+        var exitOff = getCellExitOffset(cell); var offset = exitOff !== null ? exitOff : getCellDropOffset(cell);
+        cell.skeleton.x = geomCell.x; cell.skeleton.y = -(geomCell.y + offset);
+        cell.skeleton.scaleX = scale2; cell.skeleton.scaleY = scale2;
+        cell.skeleton.updateWorldTransform(); cell.state.update(delta); cell.state.apply(cell.skeleton); cell.skeleton.updateWorldTransform();
+        renderer.drawSkeleton(cell.skeleton, false);
+      });
+    }
+  }
+  for (var fxI = activeEffects.length - 1; fxI >= 0; fxI--) {
+    var fx = activeEffects[fxI]; if (fx.done) { activeEffects.splice(fxI, 1); continue; }
+    var fxFit = Math.min(gridGeom.cellW, gridGeom.cellH) * (fx.entry.fitPadding || 0.9);
+    var fxScale = (fx.entry.baseSize > 0 ? (fxFit / fx.entry.baseSize) : 1) * gScale;
+    fx.skeleton.x = fx.x; fx.skeleton.y = -fx.y; fx.skeleton.scaleX = fxScale; fx.skeleton.scaleY = fxScale;
+    fx.skeleton.updateWorldTransform(); fx.state.update(delta); fx.state.apply(fx.skeleton); fx.skeleton.updateWorldTransform();
+    renderer.drawSkeleton(fx.skeleton, false);
+  }
+  renderer.end(); renderer.begin();
+  gl.disable(gl.SCISSOR_TEST);
+}
+function render() {
+  var now = performance.now() / 1000, delta = now - lastFrameTime; lastFrameTime = now; if (delta > 0.1) delta = 0.1;
+  resizeCanvasForDPR();
+  updateReels(delta);
+  gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
+  renderer.resize(spine.ResizeMode.Expand);
+  renderer.camera.zoom = nativeW / canvas.width;
+  renderer.camera.position.x = nativeW / 2; renderer.camera.position.y = -nativeH / 2;
+  renderer.begin();
+  var gScale = globalScale();
+  for (var li = sceneLayers.length - 1; li >= 0; li--) {
+    var layer = sceneLayers[li];
+    if (layer.type === "grid") { renderGridBlock(delta, gScale); }
+    else if (layer.type === "image" && layer.texture && layer.imageObj) {
+      var imgW = layer.imageObj.naturalWidth * layer.scale, imgH = layer.imageObj.naturalHeight * layer.scale;
+      renderer.drawTexture(layer.texture, layer.offsetX, -layer.offsetY - imgH, imgW, imgH);
+    } else if (layer.type === "popup" && layer.visible && layer.skeleton && layer.state) {
+      if (layer.dimEnabled) {
+        if (!layer.dimTexture || layer.dimOpacityCached !== layer.dimOpacity) {
+          var dc = document.createElement("canvas"); dc.width = 4; dc.height = 4;
+          var dctx = dc.getContext("2d"); dctx.fillStyle = "rgba(0,0,0," + layer.dimOpacity + ")"; dctx.fillRect(0, 0, 4, 4);
+          if (layer.dimTexture && layer.dimTexture.dispose) layer.dimTexture.dispose();
+          layer.dimTexture = new spine.GLTexture(gl, dc); layer.dimOpacityCached = layer.dimOpacity;
+        }
+        renderer.drawTexture(layer.dimTexture, 0, -nativeH, nativeW, nativeH);
+      }
+      var pScale = (layer.scale || 1) * gScale;
+      layer.skeleton.x = layer.posX; layer.skeleton.y = -layer.posY;
+      layer.skeleton.scaleX = pScale; layer.skeleton.scaleY = pScale;
+      layer.skeleton.updateWorldTransform(); layer.state.update(delta); layer.state.apply(layer.skeleton); layer.skeleton.updateWorldTransform();
+      renderer.drawSkeleton(layer.skeleton, false);
+    }
+  }
+  Object.keys(freeLayers).forEach(function(flId) {
+    var fl = freeLayers[flId]; var entry = fl.entry; var flScale = (entry.freeLayerScale || 1) * gScale;
+    fl.skeleton.x = entry.freeLayerX; fl.skeleton.y = -entry.freeLayerY;
+    fl.skeleton.scaleX = flScale; fl.skeleton.scaleY = flScale;
+    fl.skeleton.updateWorldTransform(); fl.state.update(delta); fl.state.apply(fl.skeleton); fl.skeleton.updateWorldTransform();
+    renderer.drawSkeleton(fl.skeleton, false);
+  });
+  renderer.end();
+  requestAnimationFrame(render);
+}
+restoreInitialBoard();
+requestAnimationFrame(render);
+</script></body></html>
